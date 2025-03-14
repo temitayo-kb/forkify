@@ -1,6 +1,6 @@
 import { async } from 'regenerator-runtime';
 import { API_URL, RES_PER_PAGE, KEY } from './config';
-import { AJAX } from './helpers';
+import { AJAX, ensureHttps } from './helpers';
 
 export const state = {
   recipe: {},
@@ -19,8 +19,8 @@ const createRecipeObject = function (data) {
     id: recipe.id,
     title: recipe.title,
     publisher: recipe.publisher,
-    sourceUrl: recipe.source_url,
-    image: recipe.image_url,
+    sourceUrl: ensureHttps(recipe.source_url),
+    image: ensureHttps(recipe.image_url),
     servings: recipe.servings,
     cookingTime: recipe.cooking_time,
     ingredients: recipe.ingredients,
@@ -36,7 +36,7 @@ export const loadRecipe = async function (id) {
     if (state.bookmarks.some(b => b.id === id)) state.recipe.bookmarked = true;
     else state.recipe.bookmarked = false;
 
-    // console.log(recipe);
+    console.log(state.recipe);
   } catch (err) {
     console.log(err);
     throw err;

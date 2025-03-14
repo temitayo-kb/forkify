@@ -30,6 +30,8 @@ export const AJAX = async function (url, uploadData = undefined) {
   }
 };
 
+export const ensureHttps = url => url.replace('http://', 'https://');
+
 /*
 export const getJSON = async function (url) {
   try {
