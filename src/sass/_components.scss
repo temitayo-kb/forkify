@@ -1,3 +1,8 @@
+@use 'variables' as *;
+.some-class {
+  background-image: $gradient;
+}
+
 %btn {
   background-image: $gradient;
   border-radius: 10rem;
